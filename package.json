@@ -1,0 +1,25 @@
+{
+  "name": "mean-brand-rest-api",
+  "version": "1.0.0",
+  "description": "Stub Brand Server for dealer brands, implemented using the MEAN Stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rich-digi/mean-brand-rest-api.git"
+  },
+  "author": "Richard Knight",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rich-digi/mean-brand-rest-api/issues"
+  },
+  "homepage": "https://github.com/rich-digi/mean-brand-rest-api",
+  "devDependencies": {
+    "express": "^4.10.1",
+    "lodash": "^2.4.1",
+    "mongoskin": "^1.4.4"
+  }
+}
