@@ -34,9 +34,9 @@ app.get('/dealers', function(req, res, next) {
 })
 
 // @ /brand/<DealerID>
-// Return brand for given Dealer ID, or an error message if its not found
+// Return brand for given Dealer ID, or an error message if it's not found
 app.get('/brand/:id', function(req, res, next) {
-	db.collection('brands').findOne({'DealerID': req.params.id}, function(e, result){
+	db.collection('brands').findOne({'DealerID': req.params.id}, function(e, result) {
 		if (e) return next(e)
 		if (result === null) {
 			res.json({'error': 'DealerID ' + req.params.id + ' Not Found'})
