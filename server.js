@@ -33,19 +33,33 @@ app.get('/dealers', function(req, res, next) {
 	});
 })
 
-// @ /brand/<DealerID>
-// Return brand for given Dealer ID, or an error message if it's not found
+// @ /brand/<FQDN> or /brand/<DealerID>
+// Return brand for given FQDN or Dealer ID, or an error message if it's not found
 app.get('/brand/:id', function(req, res, next) {
-	db.collection('brands').findOne({'DealerID': req.params.id}, function(e, result) {
-		if (e) return next(e)
-		if (result === null) {
-			res.sendStatus(404)
-			res.json({'error': 'DealerID ' + req.params.id + ' Not Found'})
-			return
-		}
-		delete result._id
-		res.json(result)
-	})
+	if (isNaN(req.params.id))
+	{
+		db.collection('brands').findOne({'FQDN': req.params.id}, function(e, result) {
+			if (e) return next(e)
+			if (result === null) {
+				res.status(404).json({'error': 'FQDN ' + req.params.id + ' Not Found'})
+				return
+			}
+			delete result._id
+			res.json(result)
+		})
+	}
+	else
+	{
+		db.collection('brands').findOne({'DealerID': req.params.id}, function(e, result) {
+			if (e) return next(e)
+			if (result === null) {
+				res.status(404).json({'error': 'DealerID ' + req.params.id + ' Not Found'})
+				return
+			}
+			delete result._id
+			res.json(result)
+		})
+	}
 })
 
 // -----------------------------------------------------------------------------------------
